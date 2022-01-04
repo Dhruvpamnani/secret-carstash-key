@@ -1,5 +1,5 @@
-QBCore = nil
-TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
+
+local QBCore = exports['qb-core']:GetCoreObject()
 
 
 QBCore.Functions.CreateUseableItem("stashkey", function(source, item)
@@ -26,7 +26,7 @@ AddEventHandler('regsecretstash', function(car, plate, ident, slot)
 end)
 
 QBCore.Functions.CreateCallback("hhfw:checkVehicleOwner", function(source, cb, plate, owner)
-    exports['ghmattimysql']:execute('SELECT * FROM player_vehicles WHERE plate = @plate AND citizenid = @citizenid', {['@plate'] = plate, ['@citizenid'] = owner}, function(result)
+    exports.oxmysql:fetch('SELECT * FROM player_vehicles WHERE plate = @plate AND citizenid = @citizenid', {['@plate'] = plate, ['@citizenid'] = owner}, function(result)
         if result[1] ~= nil then
             cb(true)
         else
