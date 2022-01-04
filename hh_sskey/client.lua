@@ -1,4 +1,4 @@
-QBCore = nil
+local QBCore = exports['qb-core']:GetCoreObject()
 Citizen.CreateThread(function()
     while QBCore == nil do
         TriggerEvent('QBCore:GetObject', function(obj) QBCore = obj end)
